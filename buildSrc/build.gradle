@@ -1,0 +1,34 @@
+plugins {
+    id('java-gradle-plugin')
+}
+
+description = "sofast dependency manager"
+
+group 'cc.sofast.dependency'
+version '1.0.0'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+    maven { url 'https://repo.spring.io/release' }
+    maven { url 'https://repo.spring.io/milestone' }
+}
+
+dependencies {
+    implementation('org.springframework.boot:org.springframework.boot.gradle.plugin:3.1.2')
+    implementation('org.graalvm.buildtools.native:org.graalvm.buildtools.native.gradle.plugin:0.9.23')
+    implementation('io.spring.gradle:dependency-management-plugin:1.1.0')
+    implementation('io.freefair.lombok:io.freefair.lombok.gradle.plugin:8.0.1')
+}
+
+gradlePlugin {
+    plugins {
+        version {
+            id = 'sofast.module.plugin'
+            implementationClass = 'cc.sofastframework.gradle.SofastModulePlugin'
+            displayName = "Dependency Manager Plugin"
+            description = "Manage Dependent Versions"
+        }
+    }
+}

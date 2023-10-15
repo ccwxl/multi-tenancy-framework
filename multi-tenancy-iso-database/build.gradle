@@ -1,0 +1,11 @@
+plugins {
+    id 'sofast.module.plugin'
+}
+
+bootJar {
+    enabled(false)
+}
+
+repositories {
+    mavenCentral()
+}

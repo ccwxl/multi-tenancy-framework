@@ -1,0 +1,16 @@
+plugins {
+    id 'sofast.module.plugin'
+}
+
+bootJar {
+    enabled(false)
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.springframework.boot:spring-boot-starter-webflux'
+}
