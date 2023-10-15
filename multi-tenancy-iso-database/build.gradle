@@ -5,7 +5,3 @@ plugins {
 bootJar {
     enabled(false)
 }
-
-repositories {
-    mavenCentral()
-}

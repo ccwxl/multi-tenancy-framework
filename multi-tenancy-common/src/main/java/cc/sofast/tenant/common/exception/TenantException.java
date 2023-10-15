@@ -1,7 +1,7 @@
-package cc.sofast.infrastructure.tenant.exception;
+package cc.sofast.tenant.common.exception;
 
 /**
- * @author apple
+ * @author xielong.wang
  */
 public class TenantException extends RuntimeException {
 

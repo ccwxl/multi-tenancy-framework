@@ -1,6 +1,7 @@
-allprojects {
-    group = 'cc.sofast.infrastructure'
-    configurations.all {
-        resolutionStrategy.cacheChangingModulesFor 0, "minutes"
-    }
+plugins {
+    id 'sofast.module.plugin'
+}
+
+bootJar {
+    enabled(false)
 }

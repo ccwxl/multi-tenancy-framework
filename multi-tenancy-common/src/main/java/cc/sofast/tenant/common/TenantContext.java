@@ -1,10 +1,13 @@
 package cc.sofast.tenant.common;
 
+import cc.sofast.tenant.common.utils.NamedInheritableThreadLocal;
+import cc.sofast.tenant.common.utils.StringUtils;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 
 /**
- * @author apple
+ * @author siaron.wang@gmail.com
  */
 public class TenantContext {
 
@@ -16,7 +19,7 @@ public class TenantContext {
      * 传统的只设置当前线程的方式不能满足此业务需求，必须使用栈，后进先出。
      * </pre>
      */
-    private static final ThreadLocal<Deque<String>> LOOKUP_KEY_HOLDER = new NamedInheritableThreadLocal<>("tenant-datasource") {
+    private static final ThreadLocal<Deque<String>> LOOKUP_KEY_HOLDER = new NamedInheritableThreadLocal<>("tenant-context") {
         @Override
         protected Deque<String> initialValue() {
             return new ArrayDeque<>();
@@ -31,20 +34,20 @@ public class TenantContext {
      *
      * @return 数据源名称
      */
-    public static String peek() {
+    public static String getTenant() {
         return LOOKUP_KEY_HOLDER.get().peek();
     }
 
     /**
-     * 设置当前线程数据源
+     * 设置当前租户id
      * <p>
      * 如非必要不要手动调用，调用后确保最终清除
      * </p>
      *
-     * @param ds 数据源名称
+     * @param tenant 当前租户
      */
-    public static String push(String ds) {
-        String dataSourceStr = StringUtils.hasText(ds) ? ds : "";
+    public static String setTenant(String tenant) {
+        String dataSourceStr = StringUtils.isNotBlank(tenant) ? tenant : "";
         LOOKUP_KEY_HOLDER.get().push(dataSourceStr);
         return dataSourceStr;
     }
@@ -55,7 +58,7 @@ public class TenantContext {
      * 如果当前线程是连续切换数据源 只会移除掉当前线程的数据源名称
      * </p>
      */
-    public static void poll() {
+    public static void clearCurrent() {
         Deque<String> deque = LOOKUP_KEY_HOLDER.get();
         deque.poll();
         if (deque.isEmpty()) {

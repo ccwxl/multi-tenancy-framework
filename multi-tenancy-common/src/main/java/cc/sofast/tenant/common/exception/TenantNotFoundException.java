@@ -1,7 +1,8 @@
-package cc.sofast.infrastructure.tenant.exception;
+package cc.sofast.tenant.common.exception;
 
 /**
- * @author apple
+ * @author xielong.wang
+ * throw excetion if tenant not found
  */
 public class TenantNotFoundException extends TenantException {
     public TenantNotFoundException() {

@@ -1,4 +1,4 @@
-package cc.sofast.tenant.common;
+package cc.sofast.tenant.common.utils;
 
 
 /**

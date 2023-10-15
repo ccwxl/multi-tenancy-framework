@@ -1,4 +1,4 @@
-package cc.sofast.tenant.iso.database.model;
+package cc.sofast.tenant.common.model;
 
 /**
  * @author xielong.wang
