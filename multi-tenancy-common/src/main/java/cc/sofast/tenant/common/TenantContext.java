@@ -72,7 +72,7 @@ public class TenantContext {
      * 防止内存泄漏，如手动调用了push可调用此方法确保清除
      * </p>
      */
-    public static void clear() {
+    public static void clearAll() {
         LOOKUP_KEY_HOLDER.remove();
     }
 }

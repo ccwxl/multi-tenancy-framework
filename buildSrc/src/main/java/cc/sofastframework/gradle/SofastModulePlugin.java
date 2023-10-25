@@ -1,6 +1,5 @@
 package cc.sofastframework.gradle;
 
-
 import io.spring.gradle.dependencymanagement.DependencyManagementPlugin;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -8,13 +7,10 @@ import org.gradle.api.plugins.JavaBasePlugin;
 import org.gradle.api.plugins.JavaPlugin;
 import org.springframework.boot.gradle.plugin.SpringBootPlugin;
 
+/**
+ * @author xielong.wang
+ */
 public class SofastModulePlugin implements Plugin<Project> {
-
-    private static final String STAGE = "stage";
-
-    private static final String PROD = "prod";
-
-    private static final String PROFILE = "profile";
 
     @Override
     public void apply(Project project) {
@@ -25,8 +21,12 @@ public class SofastModulePlugin implements Plugin<Project> {
         project.getPlugins().apply(JavaBasePlugin.class);
 
         //springboot
-        project.getPlugins().apply(SpringBootPlugin.class);
-        project.getPlugins().apply(DependencyManagementPlugin.class);
+        Object springBootPluginEnable = project.getProperties().get("springBootPluginEnabled");
+        if (Boolean.valueOf(String.valueOf(springBootPluginEnable)).equals(Boolean.TRUE)) {
+            System.out.println("enabled SpringBootPlugin and DependencyManagementPlugin.");
+            project.getPlugins().apply(SpringBootPlugin.class);
+            project.getPlugins().apply(DependencyManagementPlugin.class);
+        }
 
         project.getPlugins().apply(JavaConventionsPlugin.class);
 
@@ -34,9 +34,7 @@ public class SofastModulePlugin implements Plugin<Project> {
         project.getRepositories().mavenLocal();
         project.getRepositories().mavenCentral();
         project.getRepositories().maven(mavenArtifactRepository -> mavenArtifactRepository.setUrl("https://maven.aliyun.com/nexus/content/groups/public/"));
-        project.getRepositories().maven(mavenArtifactRepository -> mavenArtifactRepository.setUrl("https://repo.spring.io/release"));
         project.getRepositories().maven(mavenArtifactRepository -> mavenArtifactRepository.setUrl("https://repo.spring.io/milestone"));
-
     }
 }
 

@@ -1,3 +1,5 @@
+import static org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+
 plugins {
     id 'java-platform'
 }
@@ -7,7 +9,6 @@ javaPlatform {
 }
 
 ext {
-    p6spyVersion = '3.9.1'
     seataVersion = '1.6.1'
     feignVersion = '12.1'
     mybatisPlusVersion = '3.5.3.1'
@@ -15,9 +16,11 @@ ext {
 
 dependencies {
     constraints {
-        api "p6spy:p6spy:$p6spyVersion"
         api "io.seata:seata-rm-datasource:$seataVersion"
         api "io.github.openfeign:feign-core:$feignVersion"
         api "com.baomidou:mybatis-plus-boot-starter:$mybatisPlusVersion"
     }
+    println("spring boot version: " + BOM_COORDINATES)
+    api platform(BOM_COORDINATES)
+    api platform('org.springframework.cloud:spring-cloud-dependencies:2022.0.4')
 }

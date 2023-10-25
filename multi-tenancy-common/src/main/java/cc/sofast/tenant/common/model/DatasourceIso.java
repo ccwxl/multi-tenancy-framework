@@ -1,6 +1,8 @@
 package cc.sofast.tenant.common.model;
 
 /**
+ * see {@link DataIso}, The combination is invalid with {@link DataIso#DATABASE} and {@link DatasourceIso#SHARE}.
+ *
  * @author xielong.wang
  */
 public enum DatasourceIso {

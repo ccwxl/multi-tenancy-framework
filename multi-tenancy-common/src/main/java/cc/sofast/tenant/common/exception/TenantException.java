@@ -1,9 +1,11 @@
 package cc.sofast.tenant.common.exception;
 
 /**
+ * tenant Exception Top-level exception abstraction
+ *
  * @author xielong.wang
  */
-public class TenantException extends RuntimeException {
+public abstract class TenantException extends RuntimeException {
 
     public TenantException(String message) {
         super(message);

@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: docApp
+  tenancy:
+    enabled: true
+    datasource:
+      ds1:
+        driver-class-name: org.postgresql.Driver
+        type: com.zaxxer.hikari.HikariDataSource
+        tenants:
+          - t1
+          - t2
+        hikari:
+          maximum-pool-size: 11
+      ds2:
+        driver-class-name: org.postgresql.Driver
+        type: com.zaxxer.hikari.HikariDataSource
+        tenants:
+          - st1
+        hikari:
+          maximum-pool-size: 11

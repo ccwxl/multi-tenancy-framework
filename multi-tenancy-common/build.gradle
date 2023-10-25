@@ -1,7 +1,11 @@
+buildscript {
+    ext {
+        springBootPluginEnabled = false
+    }
+}
+
 plugins {
     id 'sofast.module.plugin'
 }
 
-bootJar {
-    enabled(false)
-}
+

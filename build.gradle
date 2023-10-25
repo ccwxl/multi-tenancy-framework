@@ -1,9 +1,26 @@
-allprojects {
-    group = 'cc.sofast.infrastructure'
-    configurations.all {
-        resolutionStrategy.cacheChangingModulesFor 0, "minutes"
-    }
-    repositories {
-        mavenCentral()
+plugins {
+    id "java"
+}
+
+group 'cc.sofast.multi-tenancy-framework'
+version = '0.0.1'
+
+clean {
+    delete "${buildDir}/out"
+    delete "${buildDir}/build"
+}
+
+build {
+    clean
+    build
+}
+
+configurations.configureEach {
+    resolutionStrategy.cacheChangingModulesFor 0, "minutes"
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
     }
 }

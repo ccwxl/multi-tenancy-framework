@@ -1,17 +1,19 @@
+buildscript {
+    ext {
+        springBootPluginEnabled = true
+    }
+}
+
 plugins {
     id 'sofast.module.plugin'
 }
 
-bootJar {
-    enabled(false)
-}
-
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    implementation group: 'org.postgresql', name: 'postgresql'
-    compileOnly 'org.springframework.boot:spring-boot-starter-web'
-    compileOnly 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation(project(":multi-tenancy-iso-database"))
+    implementation 'org.postgresql:postgresql:42.6.0'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    implementation 'org.springframework.cloud:spring-cloud-starter-stream-kafka'
 }

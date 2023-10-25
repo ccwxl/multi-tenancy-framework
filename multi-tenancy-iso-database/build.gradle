@@ -2,6 +2,10 @@ plugins {
     id 'sofast.module.plugin'
 }
 
-bootJar {
-    enabled(false)
+
+dependencies {
+    implementation(project(":multi-tenancy-common"))
+    optional 'org.springframework.boot:spring-boot-starter-jdbc'
+
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 }

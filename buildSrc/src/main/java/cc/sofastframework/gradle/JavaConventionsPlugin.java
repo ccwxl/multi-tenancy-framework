@@ -27,10 +27,14 @@ public class JavaConventionsPlugin implements Plugin<Project> {
 
     private static final String SOURCE_AND_TARGET_COMPATIBILITY = "17";
 
+    private static final String ENCODING = "UTF-8";
+
     @Override
     public void apply(Project project) {
-        System.out.println("JavaConventionsPlugin");
+        System.out.println("JavaConventionsPlugin is enabled");
+        //enabled optional plugin
         project.getPlugins().apply(OptionalDependenciesPlugin.class);
+        //configuration convention
         project.getPlugins().withType(JavaBasePlugin.class, (java) -> {
             configureJavaConventions(project);
             configureJavadocConventions(project);
@@ -41,8 +45,8 @@ public class JavaConventionsPlugin implements Plugin<Project> {
     private void configureJavadocConventions(Project project) {
         project.getTasks().withType(Javadoc.class, (javadoc) -> {
             CoreJavadocOptions options = (CoreJavadocOptions) javadoc.getOptions();
-            options.source("17");
-            options.encoding("UTF-8");
+            options.source(SOURCE_AND_TARGET_COMPATIBILITY);
+            options.encoding(ENCODING);
             options.addStringOption("Xdoclint:none", "-quiet");
         });
     }
@@ -53,7 +57,7 @@ public class JavaConventionsPlugin implements Plugin<Project> {
             javaPluginExtension.setSourceCompatibility(JavaVersion.toVersion(SOURCE_AND_TARGET_COMPATIBILITY));
         }
         project.getTasks().withType(JavaCompile.class, (compile) -> {
-            compile.getOptions().setEncoding("UTF-8");
+            compile.getOptions().setEncoding(ENCODING);
             List<String> args = compile.getOptions().getCompilerArgs();
             if (!args.contains("-parameters")) {
                 args.add("-parameters");
