@@ -32,8 +32,8 @@ public class SofastModulePlugin implements Plugin<Project> {
 
         //依赖仓库
         project.getRepositories().mavenLocal();
-        project.getRepositories().mavenCentral();
         project.getRepositories().maven(mavenArtifactRepository -> mavenArtifactRepository.setUrl("https://maven.aliyun.com/nexus/content/groups/public/"));
+        project.getRepositories().mavenCentral();
         project.getRepositories().maven(mavenArtifactRepository -> mavenArtifactRepository.setUrl("https://repo.spring.io/milestone"));
     }
 }

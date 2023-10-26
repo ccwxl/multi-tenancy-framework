@@ -1,7 +1,5 @@
 package cc.sofast.tenant.iso.database;
 
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author <a href="mailto:siaron.wang@gmail.com">xielong.wang</a>
